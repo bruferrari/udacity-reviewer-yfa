@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,6 +22,7 @@ public class MainHelper {
 
     private ImageView entityImage;
     private TextView phoneTextView;
+    private WebView entityDescription;
     private Activity activity;
 
     public MainHelper(Activity activity) {
@@ -30,11 +32,10 @@ public class MainHelper {
     public void initializeUiElements() {
         entityImage = (ImageView) activity.findViewById(R.id.entity_image);
         phoneTextView = (TextView) activity.findViewById(R.id.entity_phone);
+        entityDescription = (WebView) activity.findViewById(R.id.entity_description);
+        entityDescription = justifyText(entityDescription, activity.getResources()
+                .getString(R.string.layout_fixed_description));
     }
-
-//    public void setBitmapOnImageView(ImageView imageView, Bitmap bitmap) {
-//        imageView.setImageBitmap(bitmap);
-//    }
 
     public Bitmap getBitmapFromUrl(String literalUrl) {
         try {
@@ -61,11 +62,23 @@ public class MainHelper {
         }
     }
 
+    public WebView justifyText(WebView webView, String text) {
+        String html = "<html><body><p align=\"justify\">"
+                + text + "</p></body></html>";
+        webView.loadData(html, "text/html", "utf-8");
+
+        return webView;
+    }
+
     public ImageView getEntityImage() {
         return entityImage;
     }
 
     public TextView getPhoneTextView() {
         return phoneTextView;
+    }
+
+    public WebView getEntityDescription() {
+        return entityDescription;
     }
 }

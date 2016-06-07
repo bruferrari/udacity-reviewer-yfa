@@ -33,11 +33,10 @@
             android:textStyle="bold"
             android:text="@string/layout_fixed_title"/>
 
-        <TextView
+        <WebView
             android:id="@+id/entity_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/layout_fixed_description"
             android:layout_below="@id/entity_title"
             android:layout_marginTop="20dp"/>
 
